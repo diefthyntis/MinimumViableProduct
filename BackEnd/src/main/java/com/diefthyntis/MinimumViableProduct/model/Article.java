@@ -28,8 +28,8 @@ public class Article {
     private String word;
 	
 	@ManyToOne
-    @JoinColumn(name = "internautId", referencedColumnName = "id")
-    private Internaut internaut;
+    @JoinColumn(name = "speakerId", referencedColumnName = "id")
+    private Speaker speaker;
 	
 	@ManyToOne
     @JoinColumn(name = "topicId", referencedColumnName = "id")

@@ -68,7 +68,7 @@ public class Brain {
 	 * l'authentification.
 	 */
 	@Autowired
-	UserDetailsServiceImpl userDetailsService;
+	InternautService internautService;
 
 	/*
 	 * unauthorizedHandler : Injecte un composant qui gère les exceptions
@@ -97,7 +97,7 @@ public class Brain {
 	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
-		authProvider.setUserDetailsService(userDetailsService);
+		authProvider.setUserDetailsService(internautService);
 		authProvider.setPasswordEncoder(passwordEncoder());
 
 		return authProvider;

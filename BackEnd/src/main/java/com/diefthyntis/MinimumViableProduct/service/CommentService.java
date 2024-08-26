@@ -40,7 +40,7 @@ public class CommentService {
 	
 	 public List<Comment> getCommentsByUserId(Integer userId) {
 			// TODO Auto-generated method stub
-			return commentRepository.findByInternautId(userId);
+			return commentRepository.findBySpeakerId(userId);
 			}
 	
 	

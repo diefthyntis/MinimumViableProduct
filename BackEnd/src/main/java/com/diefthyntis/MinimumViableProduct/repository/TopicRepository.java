@@ -2,7 +2,7 @@ package com.diefthyntis.MinimumViableProduct.repository;
 
 
 
-import java.util.List;
+
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -18,7 +18,7 @@ import com.diefthyntis.MinimumViableProduct.model.Topic;
 public interface TopicRepository extends JpaRepository<Topic, Integer> {
 	
 	
-	List<Topic> findByowner_id(Integer ownerId);
+	
 	
 
 }

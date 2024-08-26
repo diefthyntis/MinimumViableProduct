@@ -13,11 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.diefthyntis.chatop.diefthyntis.utils.JwtUtils;
+import com.diefthyntis.MinimumViableProduct.util.JwtUtils;
+
+
 
 
 
@@ -53,7 +56,7 @@ public class Watchdog extends OncePerRequestFilter {
 	// comme on teste rarement les filtres, on peut tolerer l'injection par champ
 
 	@Autowired
-	private UserDetailsServiceImpl userDetailsService;
+	private UserDetailsService userDetailsService;
 
 	private static final Logger logger = LoggerFactory.getLogger(Watchdog.class);
 

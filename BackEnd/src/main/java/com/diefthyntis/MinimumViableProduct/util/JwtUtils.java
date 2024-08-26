@@ -21,7 +21,7 @@
 
     Méthode generateJwtToken :
         Cette méthode génère un JWT en utilisant les informations d'authentification de l'utilisateur.
-        Elle extrait le nom d'utilisateur des détails de l'utilisateur (UserDetailsImpl), 
+        Elle extrait le nom d'utilisateur des détails de l'utilisateur (Internaut), 
         et utilise la bibliothèque io.jsonwebtoken pour créer un token avec :
             Le nom d'utilisateur comme sujet.
             La date actuelle comme date d'émission.
@@ -60,6 +60,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import com.diefthyntis.MinimumViableProduct.security.Internaut;
+
+
+
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
+
+
+
+
 
 
 /*
@@ -79,7 +90,7 @@ public class JwtUtils {
 
   public String generateJwtToken(Authentication authentication) {
 
-    UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+    Internaut userPrincipal = (Internaut) authentication.getPrincipal();
 
     return Jwts.builder()
         .setSubject((userPrincipal.getUsername()))

@@ -3,12 +3,14 @@ package com.diefthyntis.MinimumViableProduct.mapping;
 import org.springframework.stereotype.Component;
 
 
-import com.diefthyntis.MinimumViableProduct.dto.request.ArticleRequest;
+import com.diefthyntis.MinimumViableProduct.dto.request.CommentRequest;
 import com.diefthyntis.MinimumViableProduct.model.Article;
+import com.diefthyntis.MinimumViableProduct.model.Comment;
 import com.diefthyntis.MinimumViableProduct.model.Speaker;
-import com.diefthyntis.MinimumViableProduct.model.Topic;
+
+import com.diefthyntis.MinimumViableProduct.service.ArticleService;
 import com.diefthyntis.MinimumViableProduct.service.SpeakerService;
-import com.diefthyntis.MinimumViableProduct.service.TopicService;
+
 import com.diefthyntis.MinimumViableProduct.util.NumberUtils;
 
 import lombok.RequiredArgsConstructor;
@@ -27,19 +29,19 @@ import lombok.RequiredArgsConstructor;
  */
 @Component
 @RequiredArgsConstructor
-public class ArticleMapping {
+public class CommentMapping {
 	private final SpeakerService speakerService;
-	private final TopicService topicService;
-	public Article mapArticleRequestToArticle(ArticleRequest articleRequest)
+	private final ArticleService articleService;
+	public Comment mapCommentRequestToComment(CommentRequest commentRequest)
 	{
-		final Article article = new Article();
-		article.setWord(articleRequest.getSentence());
-		Speaker speaker = speakerService.getSpeakerById(NumberUtils.convertToInteger(articleRequest.getSpeakerId()));
-		article.setSpeaker(speaker);
-		Topic topic=topicService.getTopicById(NumberUtils.convertToInteger(articleRequest.getTopicId()));
-		article.setTopic(topic);
+		final Comment comment = new Comment();
+		comment.setSentence(commentRequest.getSentence());
+		Speaker speaker = speakerService.getSpeakerById(NumberUtils.convertToInteger(commentRequest.getSpeakerId()));
+		comment.setSpeaker(speaker);
+		Article article=articleService.getArticleById(NumberUtils.convertToInteger(commentRequest.getArticleId()));
+		comment.setArticle(article);
 		
-		return article;
+		return comment;
 	}
 
 }

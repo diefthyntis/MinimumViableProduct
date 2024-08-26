@@ -28,8 +28,8 @@ public class Comment {
     private String sentence;
 	
 	@ManyToOne
-    @JoinColumn(name = "internautId", referencedColumnName = "id")
-    private Internaut internaut;
+    @JoinColumn(name = "speakerId", referencedColumnName = "id")
+    private Speaker speaker;
 	
 	@ManyToOne
     @JoinColumn(name = "articleId", referencedColumnName = "id")

@@ -2,6 +2,7 @@ package com.diefthyntis.MinimumViableProduct.service;
 
 import org.springframework.stereotype.Service;
 
+import com.diefthyntis.MinimumViableProduct.exception.ArticleNotFoundException;
 import com.diefthyntis.MinimumViableProduct.model.Article;
 import com.diefthyntis.MinimumViableProduct.repository.ArticleRepository;
 
@@ -20,5 +21,10 @@ private final ArticleRepository articleRepository;
 	public void save(Article article) {
 		articleRepository.save(article);
 	}
+	
+	public Article getArticleById(Integer articleId) {
+		return articleRepository.findById(articleId).orElseThrow(() -> new ArticleNotFoundException("Article Not Found"));
+	}
+	
 
 }

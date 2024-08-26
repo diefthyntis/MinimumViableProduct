@@ -7,8 +7,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.diefthyntis.chatop.diefthyntis.model.User;
-import com.diefthyntis.chatop.diefthyntis.repository.UserRepository;
+import com.diefthyntis.MinimumViableProduct.model.Speaker;
+import com.diefthyntis.MinimumViableProduct.repository.SpeakerRepository;
+
 
 
 
@@ -18,22 +19,22 @@ import com.diefthyntis.chatop.diefthyntis.repository.UserRepository;
  */
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class InternautService implements UserDetailsService {
   @Autowired
-  UserRepository userRepository;
+  SpeakerRepository speakerRepository;
 
   @Override
   @Transactional
   public UserDetails loadUserByUsername(String emailAddress) throws UsernameNotFoundException {
-    User user = userRepository.findByEmail(emailAddress)
+    Speaker speaker = speakerRepository.findByEmailAddress(emailAddress)
         .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + emailAddress));
 
     /*
-     * UserDetailsImpl.build est un méthode statique donc il n'y a pas besoin d'instancier
+     * Internaut.build est un méthode statique donc il n'y a pas besoin d'instancier
      * la classe pour appeler la méthode
      * Dans l'environnement JAVA,tout ce qui est statique est écrit en italique 
      */
-    return UserDetailsImpl.build(user);
+    return Internaut.build(speaker);
   }
 
 }

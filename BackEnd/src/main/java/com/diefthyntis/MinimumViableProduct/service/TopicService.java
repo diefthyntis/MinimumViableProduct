@@ -36,10 +36,7 @@ public class TopicService {
 		}
 	 
 	
-	 public List<Topic> getTopicsByUserId(Integer userId) {
-			// TODO Auto-generated method stub
-			return topicRepository.findByowner_id(userId);
-			}
+
 	
 	
 	public void update(Topic topic) {

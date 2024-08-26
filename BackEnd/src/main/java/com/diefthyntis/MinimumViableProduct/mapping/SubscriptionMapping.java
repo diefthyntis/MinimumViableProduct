@@ -3,8 +3,8 @@ package com.diefthyntis.MinimumViableProduct.mapping;
 import org.springframework.stereotype.Component;
 
 
-import com.diefthyntis.MinimumViableProduct.dto.request.ArticleRequest;
-import com.diefthyntis.MinimumViableProduct.model.Article;
+import com.diefthyntis.MinimumViableProduct.dto.request.SubscriptionRequest;
+import com.diefthyntis.MinimumViableProduct.model.Subscription;
 import com.diefthyntis.MinimumViableProduct.model.Speaker;
 import com.diefthyntis.MinimumViableProduct.model.Topic;
 import com.diefthyntis.MinimumViableProduct.service.SpeakerService;
@@ -23,23 +23,22 @@ import lombok.RequiredArgsConstructor;
 */
 
 /*
- * l'objet ArticleRequest est posté par le FrontEnd et reçu par le controller
+ * l'objet SubscriptionRequest est posté par le FrontEnd et reçu par le controller
  */
 @Component
 @RequiredArgsConstructor
-public class ArticleMapping {
+public class SubscriptionMapping {
 	private final SpeakerService speakerService;
 	private final TopicService topicService;
-	public Article mapArticleRequestToArticle(ArticleRequest articleRequest)
+	public Subscription mapSubscriptionRequestToSubscription(SubscriptionRequest subscriptionRequest)
 	{
-		final Article article = new Article();
-		article.setWord(articleRequest.getSentence());
-		Speaker speaker = speakerService.getSpeakerById(NumberUtils.convertToInteger(articleRequest.getSpeakerId()));
-		article.setSpeaker(speaker);
-		Topic topic=topicService.getTopicById(NumberUtils.convertToInteger(articleRequest.getTopicId()));
-		article.setTopic(topic);
+		final Subscription subscription = new Subscription();
+		Speaker speaker = speakerService.getSpeakerById(NumberUtils.convertToInteger(subscriptionRequest.getSpeakerId()));
+		subscription.setSpeaker(speaker);
+		Topic topic=topicService.getTopicById(NumberUtils.convertToInteger(subscriptionRequest.getTopicId()));
+		subscription.setTopic(topic);
 		
-		return article;
+		return subscription;
 	}
 
 }

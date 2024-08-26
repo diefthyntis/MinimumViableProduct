@@ -28,18 +28,18 @@ public class Subscription {
     private String word;
 	
 	@ManyToOne
-    @JoinColumn(name = "internautId", referencedColumnName = "id")
-    private Internaut internaut;
+    @JoinColumn(name = "speakerId", referencedColumnName = "id")
+    private Speaker speaker;
 	
 	@ManyToOne
     @JoinColumn(name = "topicId", referencedColumnName = "id")
     private Topic topic;
 	
 	
-	 @Column(name = "created_at")
+	 @Column(name = "createdAt")
 	    private java.time.LocalDateTime createdAt;
 	    
-	    @Column(name = "updated_at")
+	    @Column(name = "updatedAt")
 	    private java.time.LocalDateTime updatedAt;
 	    
 	    public Subscription(){

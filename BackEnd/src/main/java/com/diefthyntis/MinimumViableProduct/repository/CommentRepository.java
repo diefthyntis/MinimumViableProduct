@@ -12,6 +12,6 @@ import com.diefthyntis.MinimumViableProduct.model.Comment;
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
-	List<Comment> findByInternautId(Integer userId);
+	List<Comment> findBySpeakerId(Integer userId);
 	
 }

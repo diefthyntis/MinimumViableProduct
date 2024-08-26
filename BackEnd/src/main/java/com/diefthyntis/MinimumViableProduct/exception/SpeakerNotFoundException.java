@@ -2,9 +2,9 @@ package com.diefthyntis.MinimumViableProduct.exception;
 
 
 
-public class InternautNotFoundException extends RuntimeException {
+public class SpeakerNotFoundException extends RuntimeException {
 	  private static final long serialVersionUID = 1L;
-	    public InternautNotFoundException(String sentence) {
+	    public SpeakerNotFoundException(String sentence) {
 	        super(sentence);
 	    }
 }

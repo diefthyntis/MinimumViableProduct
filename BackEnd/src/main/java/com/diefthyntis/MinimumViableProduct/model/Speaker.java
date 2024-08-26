@@ -16,19 +16,19 @@ import lombok.Data;
 @Entity
 @Table(name = "internaut",
 uniqueConstraints = {
-       @UniqueConstraint(columnNames = "email")
+       @UniqueConstraint(columnNames = "emailAddress")
 })
 @Data
 /* @Data annotation de LOMBOK 
  * qui permet de ne pas déclarer les getters et setters qui sont générés à la compilation
  * 
  */
-public class Internaut {
+public class Speaker {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(unique = true)
-    private String email;
+    private String emailAddress;
     
     @NotBlank
     @Size(max = 20)
@@ -38,15 +38,15 @@ public class Internaut {
     @Size(max = 120)
     private String password;
     
-    @Column(name = "created_at")
-    private java.time.LocalDateTime created_at;
+    @Column(name = "createdAt")
+    private java.time.LocalDateTime createdAt;
     
-    @Column(name = "updated_at")
-    private java.time.LocalDateTime updated_at;
+    @Column(name = "updatedAt")
+    private java.time.LocalDateTime updatedAt;
     
-    public Internaut(){
-    	updated_at=LocalDateTime.now();
-    	created_at = LocalDateTime.now();
+    public Speaker(){
+    	updatedAt=LocalDateTime.now();
+    	createdAt = LocalDateTime.now();
     }
     
 }

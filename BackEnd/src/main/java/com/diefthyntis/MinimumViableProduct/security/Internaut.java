@@ -9,15 +9,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.diefthyntis.chatop.diefthyntis.model.User;
+import com.diefthyntis.MinimumViableProduct.model.Speaker;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class UserDetailsImpl implements UserDetails {
+public class Internaut implements UserDetails {
   private static final long serialVersionUID = 1L;
 
   private Integer id;
 
-  private String name;
+
 
   private String emailAddress;
 
@@ -25,10 +26,12 @@ public class UserDetailsImpl implements UserDetails {
   private String password;
 
   private Collection<? extends GrantedAuthority> authorities;
+
+private String name;
   private static final List<String> roles = List.of("ROLE_USER");
   // les tableaux en JAVA ont une taille fixe, contrairement aux listes
 
-  public UserDetailsImpl(Integer id, String name, String emailAddress, String password,
+  public Internaut(Integer id, String name, String emailAddress, String password,
       Collection<? extends GrantedAuthority> authorities) {
     this.id = id;
     this.name = name;
@@ -37,16 +40,16 @@ public class UserDetailsImpl implements UserDetails {
     this.authorities = authorities;
   }
 
-  public static UserDetailsImpl build(User user) {
+  public static Internaut build(Speaker speaker) {
     List<GrantedAuthority> authorities = roles.stream()
         .map(role -> new SimpleGrantedAuthority(role))
         .collect(Collectors.toList());
 
-    return new UserDetailsImpl(
-        user.getId(), 
-        user.getName(), 
-        user.getEmail(),
-        user.getPassword(), 
+    return new Internaut(
+    		speaker.getId(), 
+    		speaker.getName(), 
+    		speaker.getEmailAddress(),
+    		speaker.getPassword(), 
         authorities);
   }
 
@@ -98,7 +101,7 @@ public class UserDetailsImpl implements UserDetails {
       return true;
     if (o == null || getClass() != o.getClass())
       return false;
-    UserDetailsImpl user = (UserDetailsImpl) o;
+    Internaut user = (Internaut) o;
     return Objects.equals(id, user.id);
   }
 }
