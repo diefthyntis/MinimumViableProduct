@@ -78,12 +78,12 @@ public class Brain {
 	private ClosedDoor closedDoor;
 
 	/*
-	 * authenticationJwtTokenFilter : Crée un filtre de token JWT personnalisé
+	 * authenticationJsonWebTokenFilter : Crée un filtre de token JWT personnalisé
 	 * (AuthTokenFilter). Ce filtre est utilisé pour intercepter les requêtes HTTP
 	 * et vérifier la présence et la validité des tokens JWT.
 	 */
 	@Bean
-	public Watchdog authenticationJwtTokenFilter() {
+	public Watchdog authenticationJsonWebTokenFilter() {
 		return new Watchdog();
 	}
 
@@ -145,7 +145,7 @@ public class Brain {
 	 * authenticationProvider(authenticationProvider()) : Intègre le fournisseur
 	 * d'authentification personnalisé dans la configuration de Spring Security.
 	 * 
-	 * addFilterBefore(authenticationJwtTokenFilter(),
+	 * addFilterBefore(authenticationJsonWebTokenFilter(),
 	 * UsernamePasswordAuthenticationFilter.class) : Ajoute le filtre JWT
 	 * (AuthTokenFilter) avant le filtre d'authentification par nom d'utilisateur et
 	 * mot de passe standard (UsernamePasswordAuthenticationFilter). Cela permet au
@@ -162,7 +162,7 @@ public class Brain {
 
 		http.authenticationProvider(authenticationProvider());
 
-		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+		http.addFilterBefore(authenticationJsonWebTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
 		return http.build();
 	}

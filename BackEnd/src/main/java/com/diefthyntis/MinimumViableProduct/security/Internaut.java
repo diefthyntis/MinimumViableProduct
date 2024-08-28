@@ -14,94 +14,112 @@ import com.diefthyntis.MinimumViableProduct.model.Speaker;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Internaut implements UserDetails {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  private Integer id;
+	private Integer id;
+
+	private String emailAddress;
+	
+	private String pseudonym;
+	
+	
+
+	@JsonIgnore
+	private String password;
+
+	private Collection<? extends GrantedAuthority> authorities;
+
+	
+	private static final List<String> roles = List.of("ROLE_USER");
+	// les tableaux en JAVA ont une taille fixe, contrairement aux listes
+
+	public Internaut(Integer id, String pseudonym,String emailAddress, String password,
+			Collection<? extends GrantedAuthority> authorities) {
+		this.id = id;
+		this.setPseudonym(pseudonym);
+		this.setEmailAddress(emailAddress);
+		this.password = password;
+		this.authorities = authorities;
+	}
+
+	public static Internaut build(Speaker speaker) {
+		List<GrantedAuthority> authorities = roles.stream().map(role -> new SimpleGrantedAuthority(role))
+				.collect(Collectors.toList());
+
+		return new Internaut(speaker.getId(), speaker.getPseudonym(),speaker.getEmailAddress(), speaker.getPassword(),
+				authorities);
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return authorities;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	@Override
+	public String getPassword() {
+		return password;
+	}
 
 
 
-  private String emailAddress;
 
-  @JsonIgnore
-  private String password;
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
 
-  private Collection<? extends GrantedAuthority> authorities;
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
 
-private String name;
-  private static final List<String> roles = List.of("ROLE_USER");
-  // les tableaux en JAVA ont une taille fixe, contrairement aux listes
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
 
-  public Internaut(Integer id, String name, String emailAddress, String password,
-      Collection<? extends GrantedAuthority> authorities) {
-    this.id = id;
-    this.name = name;
-    this.emailAddress = emailAddress;
-    this.password = password;
-    this.authorities = authorities;
-  }
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 
-  public static Internaut build(Speaker speaker) {
-    List<GrantedAuthority> authorities = roles.stream()
-        .map(role -> new SimpleGrantedAuthority(role))
-        .collect(Collectors.toList());
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Internaut user = (Internaut) o;
+		return Objects.equals(id, user.id);
+	}
 
-    return new Internaut(
-    		speaker.getId(), 
-    		speaker.getName(), 
-    		speaker.getEmailAddress(),
-    		speaker.getPassword(), 
-        authorities);
-  }
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return emailAddress;
+	}
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return authorities;
-  }
 
-  public Integer getId() {
-    return id;
-  }
 
-  @Override
-  public String getPassword() {
-    return password;
-  }
+	public String getEmailAddress() {
+		return emailAddress;
+	}
 
-  /* la méthode getUsername est imposée par Spring 
-   * 
-   */
-  @Override
-  public String getUsername() {
-    return emailAddress;
-  }
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
 
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
+	public String getPseudonym() {
+		return pseudonym;
+	}
 
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
+	public void setPseudonym(String pseudonym) {
+		this.pseudonym = pseudonym;
+	}
 
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
 
-  @Override
-  public boolean isEnabled() {
-    return true;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o)
-      return true;
-    if (o == null || getClass() != o.getClass())
-      return false;
-    Internaut user = (Internaut) o;
-    return Objects.equals(id, user.id);
-  }
 }

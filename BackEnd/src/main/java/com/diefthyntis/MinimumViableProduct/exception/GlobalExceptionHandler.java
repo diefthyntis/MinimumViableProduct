@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-	@ExceptionHandler(EmailAddressAlreadyExistsException.class)
-    public ResponseEntity<String> handleEmailAddressAlreadyExistsException(EmailAddressAlreadyExistsException e) {
+	@ExceptionHandler(LoginAlreadyExistsException.class)
+    public ResponseEntity<String> handleloginAlreadyExistsException(LoginAlreadyExistsException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
     }
 	

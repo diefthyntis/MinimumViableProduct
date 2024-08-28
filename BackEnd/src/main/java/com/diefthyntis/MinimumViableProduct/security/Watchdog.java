@@ -68,11 +68,11 @@ public class Watchdog extends OncePerRequestFilter {
 
 			/*
 			 * 2 - Validation du JWT : Si un JWT est présent et valide (vérifié par
-			 * jwtUtils.validateJwtToken(jwt)), le nom d'utilisateur est extrait du token
-			 * (jwtUtils.getUserNameFromJwtToken(jwt)).
+			 * jwtUtils.validateJsonWebToken(jwt)), le nom d'utilisateur est extrait du token
+			 * (jwtUtils.getUserNameFromJsonWebToken(jwt)).
 			 */
-			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
-				String username = jwtUtils.getUserNameFromJwtToken(jwt);
+			if (jwt != null && jwtUtils.validateJsonWebToken(jwt)) {
+				String username = jwtUtils.getUserNameFromJsonWebToken(jwt);
 
 				/*
 				 * 3 - Chargement des détails de l'utilisateur : Les détails de l'utilisateur

@@ -14,28 +14,50 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
-@Table(name = "internaut",
+@Table(name = "speaker",
 uniqueConstraints = {
-       @UniqueConstraint(columnNames = "emailAddress")
+       @UniqueConstraint(columnNames = "login")
 })
-@Data
+
 /* @Data annotation de LOMBOK 
  * qui permet de ne pas déclarer les getters et setters qui sont générés à la compilation
  * 
  */
+@Data
 public class Speaker {
+	
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(unique = true)
+	
+    @Column(unique = true,name = "login")
+    private String login;
+    
+    
+    
+    @Size(max = 50)
+    @Column(unique = true,name = "pseudonym")
+    private String pseudonym;
+    
+    @Size(max = 50)
+    @Column(name = "firstName")
+    private String firstName;
+    
+    @Size(max = 100)
+    @Column(name = "lastName")
+    private String lastName;
+    
+    
+    @NotBlank
+    @Size(max = 100)
+    @Column(unique = true,name = "emailAddress")
     private String emailAddress;
+    
+    
     
     @NotBlank
     @Size(max = 20)
-    private String name;
-    
-    @NotBlank
-    @Size(max = 120)
     private String password;
     
     @Column(name = "createdAt")
@@ -48,5 +70,8 @@ public class Speaker {
     	updatedAt=LocalDateTime.now();
     	createdAt = LocalDateTime.now();
     }
+    
+  
+    
     
 }

@@ -2,7 +2,6 @@ package com.diefthyntis.MinimumViableProduct.mapping;
 
 import org.springframework.stereotype.Component;
 
-
 import com.diefthyntis.MinimumViableProduct.dto.request.CommentRequest;
 import com.diefthyntis.MinimumViableProduct.model.Article;
 import com.diefthyntis.MinimumViableProduct.model.Comment;
@@ -10,7 +9,6 @@ import com.diefthyntis.MinimumViableProduct.model.Speaker;
 
 import com.diefthyntis.MinimumViableProduct.service.ArticleService;
 import com.diefthyntis.MinimumViableProduct.service.SpeakerService;
-
 import com.diefthyntis.MinimumViableProduct.util.NumberUtils;
 
 import lombok.RequiredArgsConstructor;

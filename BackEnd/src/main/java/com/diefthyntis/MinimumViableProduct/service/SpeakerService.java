@@ -15,8 +15,8 @@ public class SpeakerService {
 	private final SpeakerRepository speakerRepository;
 	
 	
-	public Boolean existsByEmailAddress(final String emailAddress){
-		return speakerRepository.existsByEmailAddress(emailAddress);
+	public Boolean existsBylogin(final String login){
+		return speakerRepository.existsByLogin(login);
 		
 	}
 	
@@ -24,13 +24,17 @@ public class SpeakerService {
 		return speakerRepository.findById(id).orElseThrow(() -> new SpeakerNotFoundException("Speaker Not Found"));
 	}
 
-	public Speaker findByEmail(String emailAddress) {
-		return speakerRepository.findByEmailAddress(emailAddress).orElseThrow(() -> new SpeakerNotFoundException("Speaker Not Found"));
+	public Speaker findBylogin(String login) {
+		return speakerRepository.findByLogin(login).orElseThrow(() -> new SpeakerNotFoundException("Speaker Not Found"));
 	}
 	
 	public Speaker save(Speaker speaker) {
 		return speakerRepository.save(speaker);
 	}
 
+	public Boolean existsByPseudonym(final String login){
+		return speakerRepository.existsByPseudonym(login);
+		
+	}
 	
 }

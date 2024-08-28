@@ -3,10 +3,13 @@ package com.diefthyntis.MinimumViableProduct.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "Email Adress already exists.")
-public class EmailAddressAlreadyExistsException extends RuntimeException {
+@ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "Pseudonym already exists.")
+public class PseudonymAlreadyExistsException extends RuntimeException {
     private static final long serialVersionUID = 1L;
-    public EmailAddressAlreadyExistsException(String sentence) {
+    public PseudonymAlreadyExistsException(String sentence) {
         super(sentence);
     }
 }
+
+
+

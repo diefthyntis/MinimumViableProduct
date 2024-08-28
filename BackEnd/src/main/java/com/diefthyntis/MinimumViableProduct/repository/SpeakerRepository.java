@@ -14,10 +14,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface SpeakerRepository extends JpaRepository<Speaker, Integer> {
 
-	Optional<Speaker> findByEmailAddress(String emailAddress);
+	Optional<Speaker> findByLogin(String login);
 	
-	Boolean existsByEmailAddress(String emailAddress);
+	Boolean existsByLogin(String login);
 
+	Boolean existsByPseudonym(String login);
 
+	
+	
+		
 
 }

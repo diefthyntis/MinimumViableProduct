@@ -5,8 +5,7 @@ import lombok.Data;
 @Data
 public class SpeakerResponse {
 	 private Integer id;
-	 private String name;
-	 private String emailAdress;
+	 private String login;
 	 private String createdAt;
 	 private String updatedAt;
 	

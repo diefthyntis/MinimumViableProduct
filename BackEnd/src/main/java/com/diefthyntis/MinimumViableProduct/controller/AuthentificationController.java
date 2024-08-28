@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.diefthyntis.MinimumViableProduct.dto.request.RegisterRequest;
-import com.diefthyntis.MinimumViableProduct.dto.request.SigninRequest;
-import com.diefthyntis.MinimumViableProduct.exception.EmailAddressAlreadyExistsException;
+import com.diefthyntis.MinimumViableProduct.dto.request.SignInRequest;
+import com.diefthyntis.MinimumViableProduct.exception.LoginAlreadyExistsException;
+import com.diefthyntis.MinimumViableProduct.exception.PseudonymAlreadyExistsException;
 import com.diefthyntis.MinimumViableProduct.model.Speaker;
-import com.diefthyntis.MinimumViableProduct.security.JwtToken;
+import com.diefthyntis.MinimumViableProduct.security.JsonWebToken;
 import com.diefthyntis.MinimumViableProduct.service.SpeakerService;
 import com.diefthyntis.MinimumViableProduct.util.JwtUtils;
 
@@ -42,23 +43,28 @@ public class AuthentificationController {
 	@PostMapping("/register")
     public ResponseEntity<?> registerUser(final @RequestBody RegisterRequest registerRequest) {
 		// ? signifie la généricité, donc je peux passer n'importe quel type d'objet dans la méthode responseEntity.ok
-		if (speakerService.existsByEmailAddress(registerRequest.getEmailAddress())) {
-            throw new EmailAddressAlreadyExistsException("Email address already exists.");
+		if (speakerService.existsBylogin(registerRequest.getEmailAddress())) {
+			throw new LoginAlreadyExistsException("Login already exists");
+         
+        }
+		
+		if (speakerService.existsByPseudonym(registerRequest.getPseudonym())) {
+			throw new PseudonymAlreadyExistsException("Login already exists");
+         
         }
 		
 		final Speaker speaker = new Speaker();
 		speaker.setEmailAddress(registerRequest.getEmailAddress());
-		speaker.setName(registerRequest.getName());
 		speaker.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
 		speakerService.save(speaker);
 		
 		final Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(registerRequest.getEmailAddress(), registerRequest.getPassword()));
-        final String jwt = jwtUtils.generateJwtToken(authentication);
+        final String jwt = jwtUtils.generateJsonWebToken(authentication);
 		
 		
-		JwtToken jwtToken= new JwtToken(jwt);
-		return ResponseEntity.ok(jwtToken);
+		JsonWebToken JsonWebToken= new JsonWebToken(jwt);
+		return ResponseEntity.ok(JsonWebToken);
 		
 		
 		/* dans cette application Chatop, il y a un parti pris de créer le compte utilisateur
@@ -71,17 +77,17 @@ public class AuthentificationController {
 	
 	
 	@PostMapping("/login")
-    public ResponseEntity<?> connexionUser(final @RequestBody SigninRequest signinRequest) {
+    public ResponseEntity<?> connexionUser(final @RequestBody SignInRequest signinRequest) {
 		
 	
 		
 		final Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(signinRequest.getEmail(), signinRequest.getPassword()));
-        final String jwt = jwtUtils.generateJwtToken(authentication);
+                new UsernamePasswordAuthenticationToken(signinRequest.getLogin(), signinRequest.getPassword()));
+        final String jwt = jwtUtils.generateJsonWebToken(authentication);
 		
 		
-		JwtToken jwtToken= new JwtToken(jwt);
-		return ResponseEntity.ok(jwtToken);
+		JsonWebToken JsonWebToken= new JsonWebToken(jwt);
+		return ResponseEntity.ok(JsonWebToken);
 		
 		
 		/* dans cette application Chatop, il y a un parti pris de créer le compte utilisateur
@@ -95,8 +101,8 @@ public class AuthentificationController {
 
 	@GetMapping("/me")
     public ResponseEntity<Speaker> getMe(final Principal principal) {
-		String emailAddressUser = principal.getName();
-		final Speaker speaker=speakerService.findByEmail(emailAddressUser);
+		String login = principal.getName();
+		final Speaker speaker=speakerService.findBylogin(login);
 		return ResponseEntity.ok(speaker);
     }
 	

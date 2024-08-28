@@ -8,13 +8,13 @@ import com.diefthyntis.MinimumViableProduct.util.DateUtils;
 
 
 
+
 @Component
 public class SpeakerMapping {
 	public SpeakerResponse mapSpeakerToSpeakerResponse(Speaker speaker) {
 		final SpeakerResponse speakerResponse = new SpeakerResponse();
 		speakerResponse.setId(speaker.getId());
-		speakerResponse.setName(speaker.getName());
-		speakerResponse.setEmailAdress(speaker.getEmailAddress());
+		speakerResponse.setLogin(speaker.getLogin());
 		speakerResponse.setCreatedAt(DateUtils.convertLocalDateToString(speaker.getCreatedAt()));
 		speakerResponse.setUpdatedAt(DateUtils.convertLocalDateToString(speaker.getUpdatedAt()));
 		return speakerResponse;

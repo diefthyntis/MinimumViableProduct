@@ -2,6 +2,8 @@ package com.diefthyntis.MinimumViableProduct.model;
 
 import java.time.LocalDateTime;
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +29,9 @@ public class Article {
     @Size(max = 120)
     private String word;
 	
+	
+	
+	
 	@ManyToOne
     @JoinColumn(name = "speakerId", referencedColumnName = "id")
     private Speaker speaker;
@@ -36,10 +41,10 @@ public class Article {
     private Topic topic;
 	
 	
-	 @Column(name = "created_at")
+	 @Column(name = "createdAt")
 	    private java.time.LocalDateTime createdAt;
 	    
-	    @Column(name = "updated_at")
+	    @Column(name = "updatedAt")
 	    private java.time.LocalDateTime updatedAt;
 	    
 	    public Article(){

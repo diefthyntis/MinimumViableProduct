@@ -25,9 +25,9 @@ public class InternautService implements UserDetailsService {
 
   @Override
   @Transactional
-  public UserDetails loadUserByUsername(String emailAddress) throws UsernameNotFoundException {
-    Speaker speaker = speakerRepository.findByEmailAddress(emailAddress)
-        .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + emailAddress));
+  public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+    Speaker speaker = speakerRepository.findByLogin(login)
+        .orElseThrow(() -> new UsernameNotFoundException("User Not Found with login: " + login));
 
     /*
      * Internaut.build est un méthode statique donc il n'y a pas besoin d'instancier

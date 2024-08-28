@@ -19,7 +19,7 @@
         à savoir jwtSecret (la clé secrète utilisée pour signer les JWT) 
         et jwtExpirationMs (la durée de validité du token en millisecondes).
 
-    Méthode generateJwtToken :
+    Méthode generateJsonWebToken :
         Cette méthode génère un JWT en utilisant les informations d'authentification de l'utilisateur.
         Elle extrait le nom d'utilisateur des détails de l'utilisateur (Internaut), 
         et utilise la bibliothèque io.jsonwebtoken pour créer un token avec :
@@ -33,12 +33,12 @@
         Cette méthode génère une clé secrète à partir de jwtSecret 
         en le décodant avec l'algorithme BASE64 et en utilisant Keys.hmacShaKeyFor.
 
-    Méthode getUserNameFromJwtToken :
+    Méthode getUserNameFromJsonWebToken :
         Cette méthode extrait le nom d'utilisateur (sujet) d'un token JWT.
         Elle parse le token en utilisant la clé secrète pour le valider et récupère le sujet
          (nom d'utilisateur) du corps du token.
 
-    Méthode validateJwtToken :
+    Méthode validateJsonWebToken :
         Cette méthode valide un token JWT.
         Elle essaie de parser le token avec la clé secrète et retourne true si le token est valide.
         En cas d'exception (token mal formé, expiré, non supporté 
@@ -88,7 +88,7 @@ public class JwtUtils {
   @Value("${diefthyntis.app.expiration}")
   private int jwtExpiration;
 
-  public String generateJwtToken(Authentication authentication) {
+  public String generateJsonWebToken(Authentication authentication) {
 
     Internaut userPrincipal = (Internaut) authentication.getPrincipal();
 
@@ -108,12 +108,12 @@ public class JwtUtils {
     return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
   }
 
-  public String getUserNameFromJwtToken(String token) {
+  public String getUserNameFromJsonWebToken(String token) {
     return Jwts.parserBuilder().setSigningKey(key()).build()
                .parseClaimsJws(token).getBody().getSubject();
   }
 
-  public boolean validateJwtToken(String authToken) {
+  public boolean validateJsonWebToken(String authToken) {
     try {
       Jwts.parserBuilder().setSigningKey(key()).build().parse(authToken);
       return true;

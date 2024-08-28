@@ -36,7 +36,7 @@ public class Subscription {
     private Topic topic;
 	
 	
-	 @Column(name = "createdAt")
+	 @Column(name = "createdAt",updatable = false)
 	    private java.time.LocalDateTime createdAt;
 	    
 	    @Column(name = "updatedAt")

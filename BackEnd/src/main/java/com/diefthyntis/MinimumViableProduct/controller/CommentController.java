@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.diefthyntis.MinimumViableProduct.dto.request.CommentRequest;
 import com.diefthyntis.MinimumViableProduct.dto.response.ServerResponse;
 import com.diefthyntis.MinimumViableProduct.mapping.CommentMapping;
