@@ -4,23 +4,27 @@ package com.diefthyntis.MinimumViableProduct.controller;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.diefthyntis.MinimumViableProduct.dto.request.CommentRequest;
+import com.diefthyntis.MinimumViableProduct.dto.response.CommentResponse;
 import com.diefthyntis.MinimumViableProduct.dto.response.ServerResponse;
 import com.diefthyntis.MinimumViableProduct.mapping.CommentMapping;
+import com.diefthyntis.MinimumViableProduct.model.Article;
 import com.diefthyntis.MinimumViableProduct.model.Comment;
+import com.diefthyntis.MinimumViableProduct.service.ArticleService;
 import com.diefthyntis.MinimumViableProduct.service.CommentService;
-
-
-
 
 
 import lombok.RequiredArgsConstructor;
@@ -50,6 +54,8 @@ import lombok.extern.slf4j.Slf4j;
 public class CommentController {
 	private final CommentService commentService;
 	private final CommentMapping commentMapping;
+	private final ArticleService articleService;
+	
 	
 	@PostMapping("/comments")
     public ResponseEntity<ServerResponse> create(final @RequestBody CommentRequest commentRequest) throws IOException, java.io.IOException {
@@ -66,6 +72,20 @@ public class CommentController {
 		return ResponseEntity.ok(new ServerResponse("Comment send with success"));
       
     }
+	
+	@ResponseStatus(HttpStatus.OK)
+    @GetMapping("/comments/{articleid}")
+	public List<CommentResponse> GetCommentsByArticle(@PathVariable Integer articleid) {
+		final Article article = articleService.getArticleById(articleid);
+		final List<Comment> comments = commentService.GetCommentsByArticle(article);
+		final List<CommentResponse> commentResponses = new ArrayList();
+		comments.stream().forEach(comment -> {
+			final CommentResponse commentResponse = commentMapping.mapCommentToCommentResponse(comment);
+			commentResponses.add(commentResponse);
+			
+		});
+		return commentResponses;
+	}
 	
 	
 }

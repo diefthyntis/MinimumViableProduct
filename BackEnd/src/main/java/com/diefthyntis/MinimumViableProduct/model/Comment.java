@@ -28,18 +28,18 @@ public class Comment {
     private String sentence;
 	
 	@ManyToOne
-    @JoinColumn(name = "speakerId", referencedColumnName = "id")
+    @JoinColumn(name = "speakerid", referencedColumnName = "id")
     private Speaker speaker;
 	
 	@ManyToOne
-    @JoinColumn(name = "articleId", referencedColumnName = "id")
+    @JoinColumn(name = "articleid", referencedColumnName = "id")
     private Article article;
 	
 	
-	 @Column(name = "created_at")
+	 @Column(name = "creationdate")
 	    private java.time.LocalDateTime creationdate;
 	    
-	    @Column(name = "updated_at")
+	    @Column(name = "modificationdate")
 	    private java.time.LocalDateTime modificationdate;
 	    
 	    public Comment(){

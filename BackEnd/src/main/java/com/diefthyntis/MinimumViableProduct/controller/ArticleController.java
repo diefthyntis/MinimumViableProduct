@@ -74,7 +74,7 @@ public class ArticleController {
 	
 	@ResponseStatus(HttpStatus.OK)
 	@GetMapping("/articles/{id}")
-	public List<ArticleResponse> getArticlesBySpeakedId(final Principal principal) {
+	public List<ArticleResponse> getArticlesBySpeaker(final Principal principal) {
 		final String emailAddress = principal.getName();
 		final Speaker speaker = speakerService.findByEmailaddress(emailAddress);
 		final List<Article> articles = articleService.getArticlesBySpeaker(speaker);
