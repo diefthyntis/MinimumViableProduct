@@ -2,6 +2,7 @@ package com.diefthyntis.MinimumViableProduct.service;
 
 import org.springframework.stereotype.Service;
 
+import com.diefthyntis.MinimumViableProduct.exception.EmailaddressNotFoundException;
 import com.diefthyntis.MinimumViableProduct.exception.SpeakerNotFoundException;
 import com.diefthyntis.MinimumViableProduct.model.Speaker;
 import com.diefthyntis.MinimumViableProduct.repository.SpeakerRepository;
@@ -42,4 +43,7 @@ public class SpeakerService {
 		return speakerRepository.existsByEmailaddress(emailaddress);
 	}
 	
+	public Speaker findByEmailaddress(String emailaddress) {
+		return speakerRepository.findByEmailaddress(emailaddress).orElseThrow(() -> new EmailaddressNotFoundException("Email address Not Found"));
+	}
 }

@@ -21,7 +21,11 @@ public class Topic {
 	 private Integer id;
 	
     
-    @Column(name = "sentence")
-    private String sentence;
+    @Column(name = "code")
+    private String code;
+    
+    @Column(name="label")
+    private String label;
+    
     
   }

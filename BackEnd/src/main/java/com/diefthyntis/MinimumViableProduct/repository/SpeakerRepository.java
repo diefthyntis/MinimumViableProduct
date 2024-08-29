@@ -22,6 +22,8 @@ public interface SpeakerRepository extends JpaRepository<Speaker, Integer> {
 
 	Boolean existsByEmailaddress(String emailaddress);
 
+	Optional<Speaker> findByEmailaddress(String emailaddress);
+
 	
 	
 		
