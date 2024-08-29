@@ -7,7 +7,7 @@ public class SubscriptionResponse {
 	private Integer id;
 	private Integer creatorId;
     private Integer topicId;
-    private String createdAt;
-	private String updatedAt;
+    private String creationdate;
+	private String modificationdate;
     
 }

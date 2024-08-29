@@ -29,12 +29,17 @@ public class SpeakerService {
 	}
 	
 	public Speaker save(Speaker speaker) {
+		speaker.setLogin(speaker.getEmailaddress());
 		return speakerRepository.save(speaker);
 	}
 
 	public Boolean existsByPseudonym(final String login){
 		return speakerRepository.existsByPseudonym(login);
 		
+	}
+
+	public boolean existsByEmailaddress(String emailaddress) {
+		return speakerRepository.existsByEmailaddress(emailaddress);
 	}
 	
 }

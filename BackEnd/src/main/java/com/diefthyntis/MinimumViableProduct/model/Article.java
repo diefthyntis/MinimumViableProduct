@@ -41,14 +41,14 @@ public class Article {
     private Topic topic;
 	
 	
-	 @Column(name = "createdAt")
-	    private java.time.LocalDateTime createdAt;
+	 @Column(name = "creationdate")
+	    private java.time.LocalDateTime creationdate;
 	    
-	    @Column(name = "updatedAt")
-	    private java.time.LocalDateTime updatedAt;
+	    @Column(name = "modificationdate")
+	    private java.time.LocalDateTime modificationdate;
 	    
 	    public Article(){
-	    	updatedAt=LocalDateTime.now();
-	    	createdAt = LocalDateTime.now();
+	    	modificationdate=LocalDateTime.now();
+	    	creationdate = LocalDateTime.now();
 	    }
 }

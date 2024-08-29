@@ -41,18 +41,18 @@ public class Speaker {
     private String pseudonym;
     
     @Size(max = 50)
-    @Column(name = "firstName")
-    private String firstName;
+    @Column(name = "firstname")
+    private String firstname;
     
     @Size(max = 100)
-    @Column(name = "lastName")
-    private String lastName;
+    @Column(name = "lastname")
+    private String lastname;
     
     
     @NotBlank
     @Size(max = 100)
-    @Column(unique = true,name = "emailAddress")
-    private String emailAddress;
+    @Column(unique = true,name = "emailaddress")
+    private String emailaddress;
     
     
     
@@ -60,15 +60,15 @@ public class Speaker {
     @Size(max = 20)
     private String password;
     
-    @Column(name = "createdAt")
-    private java.time.LocalDateTime createdAt;
+    @Column(name = "creationdate")
+    private java.time.LocalDateTime creationdate;
     
-    @Column(name = "updatedAt")
-    private java.time.LocalDateTime updatedAt;
+    @Column(name = "modificationdate")
+    private java.time.LocalDateTime modificationdate;
     
     public Speaker(){
-    	updatedAt=LocalDateTime.now();
-    	createdAt = LocalDateTime.now();
+    	modificationdate=LocalDateTime.now();
+    	creationdate = LocalDateTime.now();
     }
     
   

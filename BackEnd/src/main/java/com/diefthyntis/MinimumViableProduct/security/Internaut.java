@@ -18,7 +18,7 @@ public class Internaut implements UserDetails {
 
 	private Integer id;
 
-	private String emailAddress;
+	private String emailaddress;
 	
 	private String pseudonym;
 	
@@ -33,11 +33,11 @@ public class Internaut implements UserDetails {
 	private static final List<String> roles = List.of("ROLE_USER");
 	// les tableaux en JAVA ont une taille fixe, contrairement aux listes
 
-	public Internaut(Integer id, String pseudonym,String emailAddress, String password,
+	public Internaut(Integer id, String pseudonym,String emailaddress, String password,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 		this.setPseudonym(pseudonym);
-		this.setEmailAddress(emailAddress);
+		this.setEmailaddress(emailaddress);
 		this.password = password;
 		this.authorities = authorities;
 	}
@@ -46,7 +46,7 @@ public class Internaut implements UserDetails {
 		List<GrantedAuthority> authorities = roles.stream().map(role -> new SimpleGrantedAuthority(role))
 				.collect(Collectors.toList());
 
-		return new Internaut(speaker.getId(), speaker.getPseudonym(),speaker.getEmailAddress(), speaker.getPassword(),
+		return new Internaut(speaker.getId(), speaker.getPseudonym(),speaker.getEmailaddress(), speaker.getPassword(),
 				authorities);
 	}
 
@@ -100,17 +100,17 @@ public class Internaut implements UserDetails {
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return emailAddress;
+		return emailaddress;
 	}
 
 
 
-	public String getEmailAddress() {
-		return emailAddress;
+	public String getEmailaddress() {
+		return emailaddress;
 	}
 
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setEmailaddress(String emailaddress) {
+		this.emailaddress = emailaddress;
 	}
 
 	public String getPseudonym() {

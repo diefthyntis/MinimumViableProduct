@@ -6,7 +6,7 @@ import lombok.Data;
 public class SpeakerResponse {
 	 private Integer id;
 	 private String login;
-	 private String createdAt;
-	 private String updatedAt;
+	 private String creationdate;
+	 private String modificationdate;
 	
 }

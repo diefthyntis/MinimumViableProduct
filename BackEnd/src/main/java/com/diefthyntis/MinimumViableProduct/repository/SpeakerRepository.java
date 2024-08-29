@@ -18,7 +18,9 @@ public interface SpeakerRepository extends JpaRepository<Speaker, Integer> {
 	
 	Boolean existsByLogin(String login);
 
-	Boolean existsByPseudonym(String login);
+	Boolean existsByPseudonym(String pseudonym);
+
+	Boolean existsByEmailaddress(String emailaddress);
 
 	
 	

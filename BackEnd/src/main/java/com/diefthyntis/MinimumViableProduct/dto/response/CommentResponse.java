@@ -8,7 +8,7 @@ public class CommentResponse {
 	private String description;
     private Integer creatorId;
     private Integer articleId;
-    private String createdAt;
-	private String updatedAt;
+    private String creationdate;
+	private String modificationdate;
     
 }

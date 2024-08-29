@@ -37,13 +37,13 @@ public class Comment {
 	
 	
 	 @Column(name = "created_at")
-	    private java.time.LocalDateTime createdAt;
+	    private java.time.LocalDateTime creationdate;
 	    
 	    @Column(name = "updated_at")
-	    private java.time.LocalDateTime updatedAt;
+	    private java.time.LocalDateTime modificationdate;
 	    
 	    public Comment(){
-	    	updatedAt=LocalDateTime.now();
-	    	createdAt = LocalDateTime.now();
+	    	modificationdate=LocalDateTime.now();
+	    	creationdate = LocalDateTime.now();
 	    }
 }
