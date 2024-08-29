@@ -87,5 +87,16 @@ public class CommentController {
 		return commentResponses;
 	}
 	
-	
+	@ResponseStatus(HttpStatus.OK)
+	   @GetMapping("/comments")
+		public List<CommentResponse> GetComments() {
+			final List<Comment> comments = commentService.GetComments();
+			final List<CommentResponse> commentResponses = new ArrayList();
+			comments.stream().forEach(comment -> {
+				final CommentResponse commentResponse = commentMapping.mapCommentToCommentResponse(comment);
+				commentResponses.add(commentResponse);
+				
+			});
+			return commentResponses;
+		}
 }

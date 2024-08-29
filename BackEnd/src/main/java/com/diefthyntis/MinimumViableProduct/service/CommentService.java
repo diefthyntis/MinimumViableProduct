@@ -65,6 +65,11 @@ public class CommentService {
 		return commentRepository.findByArticle(article);
 		
 	}
+
+	public List<Comment> GetComments() {
+		// TODO Auto-generated method stub
+		return commentRepository.findAll();
+	}
 	
 	
 	
