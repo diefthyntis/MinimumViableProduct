@@ -72,21 +72,34 @@ public class ArticleController {
       
     }
 	
-	@GetMapping("/articles/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public List<Article> getArticlesBySpeakedId(final Principal principal) {
-		private final String emailAddress = principal.getName();
-		private final Speaker speaker = speakerService.findByEmailaddress(emailAddress);
-		private final List<Article> articles = articleService.getArticlesBySpeakerId(speaker.getId());
-		private final List<ArticleResponse> articleResponses = new ArrayList();
+	@GetMapping("/articles/{id}")
+	public List<ArticleResponse> getArticlesBySpeakedId(final Principal principal) {
+		final String emailAddress = principal.getName();
+		final Speaker speaker = speakerService.findByEmailaddress(emailAddress);
+		final List<Article> articles = articleService.getArticlesBySpeaker(speaker);
+		final List<ArticleResponse> articleResponses = new ArrayList();
 		articles.stream().forEach(article -> {
-			private final ArticleResponse = articleMapping.
-		})
+			final ArticleResponse articleResponse = articleMapping.mapArticleToArticleResponse(article);
+			articleResponses.add(articleResponse);
+		});
 		return articleResponses;
 		
 		
 	}
 	
-	
+	@ResponseStatus(HttpStatus.OK)
+	@GetMapping("/articles")
+	public List<ArticleResponse> getArticles() {
+		final List<Article> articles = articleService.getArticles();
+		final List<ArticleResponse> articleResponses = new ArrayList();
+		articles.stream().forEach(article -> {
+			final ArticleResponse articleResponse = articleMapping.mapArticleToArticleResponse(article);
+			articleResponses.add(articleResponse);
+		});
+		return articleResponses;
+		
+		
+	}
 	
 }
