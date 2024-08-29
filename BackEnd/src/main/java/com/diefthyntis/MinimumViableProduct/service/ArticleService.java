@@ -1,5 +1,8 @@
 package com.diefthyntis.MinimumViableProduct.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.diefthyntis.MinimumViableProduct.exception.ArticleNotFoundException;
@@ -26,5 +29,12 @@ private final ArticleRepository articleRepository;
 		return articleRepository.findById(articleId).orElseThrow(() -> new ArticleNotFoundException("Article Not Found"));
 	}
 	
+	public List<Article> getArticlesBySpeakerId(Integer speakerId) {
+		return articleRepository.findBySpeakerid(speakerId);
+				}
+	
+	public List<Article> getArticles() {
+		return articleRepository.findAll();
+	}
 
 }

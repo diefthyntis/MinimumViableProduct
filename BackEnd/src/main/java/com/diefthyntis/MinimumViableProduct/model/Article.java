@@ -27,17 +27,22 @@ public class Article {
 	
 	@NotBlank
     @Size(max = 120)
-    private String word;
+    private String title;
+	
+	
+	@NotBlank
+    @Size(max = 5000)
+    private String sentence;
 	
 	
 	
 	
 	@ManyToOne
-    @JoinColumn(name = "speakerId", referencedColumnName = "id")
+    @JoinColumn(name = "speakerid", referencedColumnName = "id")
     private Speaker speaker;
 	
 	@ManyToOne
-    @JoinColumn(name = "topicId", referencedColumnName = "id")
+    @JoinColumn(name = "topicid", referencedColumnName = "id")
     private Topic topic;
 	
 	

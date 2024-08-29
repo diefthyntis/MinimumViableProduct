@@ -2,8 +2,8 @@ package com.diefthyntis.MinimumViableProduct.mapping;
 
 import org.springframework.stereotype.Component;
 
-
 import com.diefthyntis.MinimumViableProduct.dto.request.ArticleRequest;
+import com.diefthyntis.MinimumViableProduct.dto.response.ArticleResponse;
 import com.diefthyntis.MinimumViableProduct.model.Article;
 import com.diefthyntis.MinimumViableProduct.model.Speaker;
 import com.diefthyntis.MinimumViableProduct.model.Topic;
@@ -32,14 +32,26 @@ public class ArticleMapping {
 	private final TopicService topicService;
 	public Article mapArticleRequestToArticle(ArticleRequest articleRequest)
 	{
-		final Article article = new Article();
-		article.setWord(articleRequest.getSentence());
-		Speaker speaker = speakerService.getSpeakerById(NumberUtils.convertToInteger(articleRequest.getSpeakerId()));
+		private final Article article = new Article();
+		article.setSentence(articleRequest.getSentence());
+		article.setTitle(articleRequest.getTitle());
+		private final Speaker speaker = speakerService.getSpeakerById(NumberUtils.convertToInteger(articleRequest.getSpeakerid()));
 		article.setSpeaker(speaker);
-		Topic topic=topicService.getTopicById(NumberUtils.convertToInteger(articleRequest.getTopicId()));
+		private final Topic topic=topicService.getTopicById(NumberUtils.convertToInteger(articleRequest.getTopicid()));
 		article.setTopic(topic);
 		
 		return article;
+	}
+	public ArticleResponse mapArticleToArticleResponse(Article article) {
+		private final ArticleResponse articleResponse = new ArticleResponse();
+		articleResponse.setId(NumberUtils.convertToString(article.getId()));
+		articleResponse.setSpeakerid(NumberUtils.convertToString(article.getSpeaker().getId()));
+		articleResponse.setTopicid(NumberUtils.convertToString(article.getTopic().getId()));
+		articleResponse.setTitle(article.getTitle());
+		articleResponse.setSentence(article.getSentence());
+		return articleResponse;
+		
+		
 	}
 
 }

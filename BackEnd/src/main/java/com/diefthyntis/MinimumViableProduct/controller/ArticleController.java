@@ -4,21 +4,28 @@ package com.diefthyntis.MinimumViableProduct.controller;
 
 
 import java.io.IOException;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 
 import com.diefthyntis.MinimumViableProduct.dto.request.ArticleRequest;
+import com.diefthyntis.MinimumViableProduct.dto.response.ArticleResponse;
 import com.diefthyntis.MinimumViableProduct.dto.response.ServerResponse;
 import com.diefthyntis.MinimumViableProduct.mapping.ArticleMapping;
 import com.diefthyntis.MinimumViableProduct.model.Article;
+import com.diefthyntis.MinimumViableProduct.model.Speaker;
 import com.diefthyntis.MinimumViableProduct.service.ArticleService;
+import com.diefthyntis.MinimumViableProduct.service.SpeakerService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +54,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ArticleController {
 	private final ArticleService articleService;
 	private final ArticleMapping articleMapping;
+	private final SpeakerService speakerService;
 	
 	@PostMapping("/articles")
     public ResponseEntity<ServerResponse> create(final @RequestBody ArticleRequest articleRequest) throws IOException, java.io.IOException {
@@ -64,7 +72,20 @@ public class ArticleController {
       
     }
 	
-	
+	@GetMapping("/articles/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public List<Article> getArticlesBySpeakedId(final Principal principal) {
+		private final String emailAddress = principal.getName();
+		private final Speaker speaker = speakerService.findByEmailaddress(emailAddress);
+		private final List<Article> articles = articleService.getArticlesBySpeakerId(speaker.getId());
+		private final List<ArticleResponse> articleResponses = new ArrayList();
+		articles.stream().forEach(article -> {
+			private final ArticleResponse = articleMapping.
+		})
+		return articleResponses;
+		
+		
+	}
 	
 	
 	
