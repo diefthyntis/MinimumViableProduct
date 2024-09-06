@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.diefthyntis.MinimumViableProduct.dto.request.ArticleRequest;
 import com.diefthyntis.MinimumViableProduct.dto.request.CommentRequest;
 import com.diefthyntis.MinimumViableProduct.dto.response.CommentResponse;
 import com.diefthyntis.MinimumViableProduct.dto.response.ServerResponse;
@@ -99,4 +100,6 @@ public class CommentController {
 			});
 			return commentResponses;
 		}
+	
+	
 }
