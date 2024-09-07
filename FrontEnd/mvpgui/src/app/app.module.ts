@@ -10,6 +10,7 @@ import { TopicsListComponent } from './topics-list/topics-list.component';
 import { ArticlesListComponent } from './articles-list/articles-list.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ZoomArticleComponent } from './zoom-article/zoom-article.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ZoomArticleComponent } from './zoom-article/zoom-article.component';
     TopicsListComponent,
     ArticlesListComponent,
     ProfileComponent,
-    ZoomArticleComponent
+    ZoomArticleComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
