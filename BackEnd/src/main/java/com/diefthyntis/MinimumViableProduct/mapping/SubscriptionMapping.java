@@ -4,11 +4,13 @@ import org.springframework.stereotype.Component;
 
 
 import com.diefthyntis.MinimumViableProduct.dto.request.SubscriptionRequest;
+import com.diefthyntis.MinimumViableProduct.dto.response.SubscriptionResponse;
 import com.diefthyntis.MinimumViableProduct.model.Subscription;
 import com.diefthyntis.MinimumViableProduct.model.Speaker;
 import com.diefthyntis.MinimumViableProduct.model.Topic;
 import com.diefthyntis.MinimumViableProduct.service.SpeakerService;
 import com.diefthyntis.MinimumViableProduct.service.TopicService;
+import com.diefthyntis.MinimumViableProduct.util.DateUtils;
 import com.diefthyntis.MinimumViableProduct.util.NumberUtils;
 
 import lombok.RequiredArgsConstructor;
@@ -33,12 +35,23 @@ public class SubscriptionMapping {
 	public Subscription mapSubscriptionRequestToSubscription(SubscriptionRequest subscriptionRequest)
 	{
 		final Subscription subscription = new Subscription();
-		Speaker speaker = speakerService.getSpeakerById(NumberUtils.convertToInteger(subscriptionRequest.getSpeakerId()));
+		Speaker speaker = speakerService.getSpeakerById(NumberUtils.convertToInteger(subscriptionRequest.getSpeakerid()));
 		subscription.setSpeaker(speaker);
-		Topic topic=topicService.getTopicById(NumberUtils.convertToInteger(subscriptionRequest.getTopicId()));
+		Topic topic=topicService.getTopicById(NumberUtils.convertToInteger(subscriptionRequest.getTopicid()));
 		subscription.setTopic(topic);
 		
 		return subscription;
+	}
+	
+	public SubscriptionResponse mapSubscriptionToSubscriptionResponse(Subscription subscription) {
+		final SubscriptionResponse subscriptionResponse = new SubscriptionResponse();
+		subscriptionResponse.setId(NumberUtils.convertToString(subscription.getId()));
+		subscriptionResponse.setCreationdate(DateUtils.convertLocalDateToString(subscription.getCreationdate()));
+		subscriptionResponse.setModificationdate(DateUtils.convertLocalDateToString(subscription.getModificationdate()));
+		subscriptionResponse.setSpeakerid(NumberUtils.convertToString(subscription.getSpeaker().getId()));
+		subscriptionResponse.setTopicId(NumberUtils.convertToString(subscription.getTopic().getId()));
+		return subscriptionResponse;
+		
 	}
 
 }

@@ -3,6 +3,7 @@ package com.diefthyntis.MinimumViableProduct.controller;
 
 import java.security.Principal;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,6 +26,7 @@ import com.diefthyntis.MinimumViableProduct.model.Speaker;
 import com.diefthyntis.MinimumViableProduct.security.JsonWebToken;
 import com.diefthyntis.MinimumViableProduct.service.SpeakerService;
 import com.diefthyntis.MinimumViableProduct.util.JwtUtils;
+
 
 import lombok.RequiredArgsConstructor;
 

@@ -23,16 +23,12 @@ public class Subscription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 	
-	@NotBlank
-    @Size(max = 120)
-    private String word;
-	
 	@ManyToOne
-    @JoinColumn(name = "speakerId", referencedColumnName = "id")
+    @JoinColumn(name = "speakerid", referencedColumnName = "id")
     private Speaker speaker;
 	
 	@ManyToOne
-    @JoinColumn(name = "topicId", referencedColumnName = "id")
+    @JoinColumn(name = "topicid", referencedColumnName = "id")
     private Topic topic;
 	
 	

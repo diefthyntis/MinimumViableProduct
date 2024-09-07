@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class SubscriptionRequest {
-	private String speakerId;
-	private String topicId;
+	private String speakerid;
+	private String topicid;
 }

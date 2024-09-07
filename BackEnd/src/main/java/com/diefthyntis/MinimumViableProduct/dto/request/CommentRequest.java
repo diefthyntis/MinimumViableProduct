@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class CommentRequest {
 	private String sentence;
-	private String speakerId;
-	private String articleId;
+	private String speakerid;
+	private String articleid;
 }

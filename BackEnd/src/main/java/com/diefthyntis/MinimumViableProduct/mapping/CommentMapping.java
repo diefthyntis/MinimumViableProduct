@@ -36,9 +36,9 @@ public class CommentMapping {
 	{
 		final Comment comment = new Comment();
 		comment.setSentence(commentRequest.getSentence());
-		Speaker speaker = speakerService.getSpeakerById(NumberUtils.convertToInteger(commentRequest.getSpeakerId()));
+		Speaker speaker = speakerService.getSpeakerById(NumberUtils.convertToInteger(commentRequest.getSpeakerid()));
 		comment.setSpeaker(speaker);
-		Article article=articleService.getArticleById(NumberUtils.convertToInteger(commentRequest.getArticleId()));
+		Article article=articleService.getArticleById(NumberUtils.convertToInteger(commentRequest.getArticleid()));
 		comment.setArticle(article);
 		
 		return comment;

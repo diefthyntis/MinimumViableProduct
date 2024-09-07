@@ -4,9 +4,9 @@ import lombok.Data;
 
 @Data
 public class SubscriptionResponse {
-	private Integer id;
-	private Integer creatorId;
-    private Integer topicId;
+	private String id;
+	private String speakerid;
+    private String topicId;
     private String creationdate;
 	private String modificationdate;
     
