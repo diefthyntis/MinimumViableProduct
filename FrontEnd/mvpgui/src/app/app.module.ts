@@ -3,14 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LandingComponent } from './landing/landing.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { TopicsListComponent } from './topics-list/topics-list.component';
-import { ArticlesListComponent } from './articles-list/articles-list.component';
-import { ProfileComponent } from './profile/profile.component';
+import { LandingComponent } from './components/landing/landing.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { TopicsListComponent } from './components/topics-list/topics-list.component';
+import { ArticlesListComponent } from './components/articles-list/articles-list.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { ZoomArticleComponent } from './zoom-article/zoom-article.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
+import { AuthHeaderComponent } from './components/auth-header/auth-header.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { HeaderComponent } from './header/header.component';
     ArticlesListComponent,
     ProfileComponent,
     ZoomArticleComponent,
-    HeaderComponent
+    HeaderComponent,
+    AuthHeaderComponent
   ],
   imports: [
     BrowserModule,

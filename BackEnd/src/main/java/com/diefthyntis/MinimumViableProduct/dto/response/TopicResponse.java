@@ -8,7 +8,7 @@ import lombok.Data;
 public class TopicResponse {
 	private String id;
 
-	private String code;
+	private String title;
 
-	private String label;
+	private String description;
 }

@@ -7,8 +7,8 @@ import lombok.Data;
 public class TopicRequest {
 	private String id;
 
-	private String code;
+	private String title;
 
-	private String label;
+	private String description;
 
 }

@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopicsListComponent implements OnInit {
 
-  constructor() { }
-
+  arrayTopics:Topic[]=[];
+  
+  constructor(private instanceTopicService: TopicService){};
+  
   ngOnInit(): void {
+      this.arrayTopics=this.instanceTopicService.getAll();
+  
+    
   }
 
 }
+
+  

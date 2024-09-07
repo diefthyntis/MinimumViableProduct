@@ -1,34 +1,21 @@
-<div class="register-container">
-    <!-- Partie supérieure avec le logo -->
-    <div >
-      <img class="logo" src="../../assets/images/Logo.png">
-    </div>
-
-    
+<app-auth-header></app-auth-header>
   
-    <!-- Partie inférieure avec le formulaire d'inscription -->
-    <div>
+  
       <h2>Inscription</h2>
-      
-      <!-- Ligne 1 -->
-      <div >
+      <form class="register-form"  (ngSubmit)="submit()">
+     <div >
         <label for="pseudonym">Nom d'utilisateur :</label>
         <input type="text" id="pseudonym" class="form-control">
       </div>
-  
-      <!-- Ligne 2 -->
-      <div>
+    <div>
         <label for="emailaddress">Adresse e-mail :</label>
         <input type="emailaddress" id="emailaddress" class="form-control">
       </div>
-  
-      <!-- Ligne 3 -->
-      <div >
+    <div >
         <label for="password">Mot de passe :</label>
         <input type="password" id="password" class="form-control">
       </div>
       <div>
-        <button class="button">S'inscrire</button>
+        <button type="submit" class="button">S'inscrire</button>
     </div>
-  </div>
-  
+  </form>

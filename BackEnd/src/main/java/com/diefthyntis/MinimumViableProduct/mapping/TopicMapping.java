@@ -17,8 +17,8 @@ public class TopicMapping {
 	
 	public Topic mapTopicRequestToTopic(TopicRequest topicRequest)  {
 		final Topic topic = new Topic();
-		topic.setCode(topicRequest.getCode());
-		topic.setLabel(topicRequest.getLabel());
+		topic.setDescription(topicRequest.getDescription());
+		topic.setTitle(topicRequest.getTitle());
 		topic.setId(NumberUtils.convertToInteger(topicRequest.getId()));
 		return topic;
 	}
@@ -27,8 +27,8 @@ public class TopicMapping {
 		// TODO Auto-generated method stub
 		final TopicResponse topicResponse = new TopicResponse();
 		topicResponse.setId(NumberUtils.convertToString(topic.getId()));
-		topicResponse.setCode(topic.getCode());
-		topicResponse.setLabel(topic.getLabel());
+		topicResponse.setDescription(topic.getDescription());
+		topicResponse.setTitle(topic.getTitle());
 		return topicResponse;
 	}
 }

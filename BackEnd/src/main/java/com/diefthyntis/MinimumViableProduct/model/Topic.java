@@ -21,11 +21,11 @@ public class Topic {
 	 private Integer id;
 	
     
-    @Column(name = "code")
-    private String code;
+    @Column(name = "description")
+    private String description;
     
-    @Column(name="label")
-    private String label;
+    @Column(name="title")
+    private String title;
     
     
   }
