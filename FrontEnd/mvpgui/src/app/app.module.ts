@@ -9,10 +9,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { TopicsListComponent } from './components/topics-list/topics-list.component';
 import { ArticlesListComponent } from './components/articles-list/articles-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { ZoomArticleComponent } from './zoom-article/zoom-article.component';
+import { ZoomArticleComponent } from './components/zoom-article/zoom-article.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthHeaderComponent } from './components/auth-header/auth-header.component';
-
+import { FormsModule } from '@angular/forms';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -25,11 +26,13 @@ import { AuthHeaderComponent } from './components/auth-header/auth-header.compon
     ProfileComponent,
     ZoomArticleComponent,
     HeaderComponent,
-    AuthHeaderComponent
+    AuthHeaderComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

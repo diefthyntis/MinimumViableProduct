@@ -22,4 +22,8 @@ export class LandingComponent implements OnInit {
     this.router.navigateByUrl('register');
   }
 
+  navigateToSignup() {
+    this.router.navigateByUrl('signup');
+  }
+
 }

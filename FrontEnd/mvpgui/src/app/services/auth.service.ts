@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { RegisterRequest } from '../interfaces/dto/registerRequest.interface';
 import { AuthSuccess } from '../interfaces/dto/authSuccess.interface';
 import { LoginRequest } from '../interfaces/dto/loginRequest.interface';
-import { User } from '../interfaces/models/speaker.interface';
+import { Speaker } from '../interfaces/models/speaker.interface';
 
 
 @Injectable({
@@ -24,7 +24,7 @@ export class AuthService {
     return this.httpClient.post<AuthSuccess>(`${this.pathService}/login`, loginRequest);
   }
 
-  public me(): Observable<User> {
-    return this.httpClient.get<User>(`${this.pathService}/me`);
+  public me(): Observable<Speaker> {
+    return this.httpClient.get<Speaker>(`${this.pathService}/me`);
   }
 }

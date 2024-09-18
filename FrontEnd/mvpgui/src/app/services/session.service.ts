@@ -9,7 +9,7 @@ import { Speaker } from '../interfaces/models/speaker.interface';
 export class SessionService {
 
   public isLogged = false;
-  public user: Speaker | undefined;
+  public speaker: Speaker | undefined;
 
   private isLoggedSubject = new BehaviorSubject<boolean>(this.isLogged);
 
@@ -17,15 +17,15 @@ export class SessionService {
     return this.isLoggedSubject.asObservable();
   }
 
-  public logIn(user: Speaker): void {
-    this.user = user;
+  public logIn(speaker: Speaker): void {
+    this.speaker = speaker;
     this.isLogged = true;
     this.next();
   }
 
   public logOut(): void {
     localStorage.removeItem('token');
-    this.user = undefined;
+    this.speaker = undefined;
     this.isLogged = false;
     this.next();
   }
